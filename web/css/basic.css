@@ -1,12 +1,26 @@
-.item-image {
-    position: relative;
-    float: left;
-    width: 100px;
-    height: 50px;
-
+.item-image img {
+    clear: both;
+    padding: 8px;
+    border: 1px solid #ccc;
+    background: #fff;
+    margin-bottom: 10px;
+    width: 200px;
+    height: 200px;
 }
 
+.item-contain h2 {
+    border-top: 3px solid #999;
+    border-bottom: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 20px;
+    background-color: blanchedalmond;
+}
+
+
 .item-contain {
-    width: 70%;
-    text-align: center;
+    clear: both;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ccc;
 }

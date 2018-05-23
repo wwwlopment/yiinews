@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\NewsComments;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -60,17 +61,60 @@ class SiteController extends Controller
      *
      * @return string
      */
-/*    public function actionIndex()
-    {
-        return $this->render('index');
-    }*/
+
   public function actionIndex()
   {
-    $this->layout = 'news';
     $this->view->title = 'Новини';
-    $news = News::find()->limit(5)->all();
+    $news = News::find()->limit(5)->orderBy(['id' => SORT_DESC])->all();
 
     return $this->render('basic', compact('news'));
+  }
+
+
+  /**
+   * Show current news action.
+   *
+   * @return string
+   */
+
+  public function actionShow($id)
+  {
+    $shownews = News::findOne(['id' => $id]);
+    $showcomments = NewsComments::find()->where(['news_id' => $id])->all();
+    $model = new NewsComments();
+    return $this->render('current', ['model' => $model, 'shownews' => $shownews, 'showcomments' => $showcomments]);
+  }
+
+  /**
+   * Add current news comment action.
+   *
+   * @return string
+   */
+
+  public function actionAdd() {
+
+    if (Yii::$app->request->post()) {
+   /*   echo '<pre>';
+
+      print_r(Yii::$app->request->post('NewsComments'));
+      echo '</pre>';
+      die;*/
+      $model = new NewsComments();
+      $model->news_id =Yii::$app->request->post('NewsComments')['news_id'];
+      $model->date = date("Y-m-d");
+      $model->author_name = Yii::$app->request->post('NewsComments')['author_name'];
+      $model->comment = Yii::$app->request->post('NewsComments')['comment'];
+      if ($model->save()) {
+      Yii::$app->session->setFlash('success', 'Коментар доданий');
+       $this->refresh();
+      } else {
+        Yii::$app->session->setFlash('error', 'Помилка');
+      }
+    }
+   // return $this->refresh();
+//return $this->render('current');
+   // return $this->redirect(['show', 'id' => Yii::$app->request->post('NewsComments')['news_id']]);
+
   }
 
     /**
