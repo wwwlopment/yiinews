@@ -80,7 +80,7 @@ class SiteController extends Controller
     $countQuery = clone $news;
 
     // paginations - 10 items per page
-    $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 10]);
+    $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 5]);
 
     $pages->pageSizeParam = false;
 
