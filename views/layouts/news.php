@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this \yii\web\View */
+
 /* @var $content string */
 
 use app\widgets\Alert;
@@ -16,11 +17,11 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-  <meta charset="<?= Yii::$app->charset ?>">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="<?= Yii::$app->charset ?>">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   <?= Html::csrfMetaTags() ?>
-  <title><?= Html::encode($this->title) ?></title>
+    <title><?= Html::encode($this->title) ?></title>
   <?php $this->head() ?>
 </head>
 <body>
@@ -38,29 +39,29 @@ AppAsset::register($this);
   echo Nav::widget([
     'options' => ['class' => 'navbar-nav navbar-right'],
     'items' => [
-      ['label' => 'Home', 'url' => ['/']],
-      ['label' => 'News', 'url' => ['/newsmodule/news/index']],
-      ['label' => 'Comments', 'url' => ['/newsmodule/newscomments/index']],
+      ['label' => 'На головну', 'url' => ['/']],
+      ['label' => 'Адміністрування новин', 'url' => ['/newsmodule/news/index']],
+      ['label' => 'Адміністрування коментарів', 'url' => ['/newsmodule/comments/index']],
     ],
   ]);
   NavBar::end();
   ?>
 
-  <div class="container">
-    <?= Breadcrumbs::widget([
-      'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-    ]) ?>
-    <?= Alert::widget() ?>
-    <?= $content ?>
-  </div>
+    <div class="container">
+      <?= Breadcrumbs::widget([
+        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+      ]) ?>
+      <?= Alert::widget() ?>
+      <?= $content ?>
+    </div>
 </div>
 
 <footer class="footer">
-  <div class="container">
-    <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+    <div class="container">
+        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
 
-    <p class="pull-right"><?= Yii::powered() ?></p>
-  </div>
+        <p class="pull-right"><?= Yii::powered() ?></p>
+    </div>
 </footer>
 
 <?php $this->endBody() ?>

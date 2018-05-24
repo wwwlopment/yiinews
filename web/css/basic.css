@@ -24,3 +24,21 @@
     padding-bottom: 20px;
     border-bottom: 1px solid #ccc;
 }
+
+.comment-wrapper {
+    width: 50%;
+    background-color: #cedca3;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+}
+
+h5 {
+    background-color: yellow;
+    text-align: center;
+    padding: 10px;
+}
+
+h4 {
+    text-align: center;
+}

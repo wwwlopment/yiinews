@@ -1,5 +1,6 @@
 <?php
 /* @var $this \yii\web\View */
+
 /* @var $content string */
 
 use app\widgets\Alert;
@@ -17,11 +18,11 @@ use yii\widgets\ActiveForm;
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-  <meta charset="<?= Yii::$app->charset ?>">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="<?= Yii::$app->charset ?>">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   <?= Html::csrfMetaTags() ?>
-  <title><?= Html::encode($this->title) ?></title>
+    <title><?= Html::encode($this->title) ?></title>
   <?php $this->head() ?>
 </head>
 <body>
@@ -39,68 +40,58 @@ use yii\widgets\ActiveForm;
   echo Nav::widget([
     'options' => ['class' => 'navbar-nav navbar-right'],
     'items' => [
-      ['label' => 'Home', 'url' => ['/']],
-      ['label' => 'News', 'url' => ['/newsmodule/news/index']],
+      ['label' => 'На головну', 'url' => ['/']],
+      ['label' => 'Адміністрування новин', 'url' => ['/newsmodule/news/index']],
+      ['label' => 'Адміністрування коментарів', 'url' => ['/newsmodule/comments/index']],
     ],
   ]);
   NavBar::end();
   ?>
 
-  <div class="container">
-    <?= Breadcrumbs::widget([
-      'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-    ]) ?>
-    <?= Alert::widget() ?>
+    <div class="container">
+      <?= Breadcrumbs::widget([
+        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+      ]) ?>
+      <?= Alert::widget() ?>
+
+      <?= '<div class="item-contain">' ?>
+      <?= '<h1>' . $shownews['title'] . '</h1>' ?>
+      <?= '<div class="item-image">' . Html::img('/web/uploads/' . $shownews['picture']) . '</div>' ?>
+      <?= '<div class="item-content">' . $shownews['content'] . '</div>' ?>
 
 
+      <?php if (empty($showcomments)):echo '<hr><h5>Відсутні будь-які коментарії до даної новини</h5><hr>'; else: echo '<hr><H4>Коментарі :</H4><hr>'; endif; ?>
 
-
-      <?='<div class="item-contain">'?>
-      <?='<h1>' . $shownews['title'] . '</h1>'?>
-      <?='<div class="item-image">' .Html::img('/web/uploads/'.$shownews['picture']). '</div>'?>
-      <?= '<div class="item-content">' . $shownews['content'] . '</div>'?>
-
-
-
-
-    <?php if (empty($showcomments)):echo '<hr>  <h5>Відсутні будь-які коментарії до даної новини</h5><hr>'; endif;?>
-
-    <?php $form = ActiveForm::begin(['action' => 'add']); ?>
-    <?= $form->field($model, 'author_name')->label('Автор') ?>
-    <?= $form->field($model, 'comment')->textarea(['rows' => 6])->label('Коментар') ?>
-    <?= $form->field($model, 'news_id')->hiddenInput(['value'=>$shownews['id']])->label(false)  ?>
-
-    <?='<div class="comment_wrapper">'?>
-
-<?php foreach ($showcomments as $comment): ?>
-
-  <?= '<div class="comment_author">'.$comment['date'].'</div>'?>
-  <?= '<div class="comment_author">'.$comment['author_name'].'</div>'?>
-<?= '<div class="comment_text">'.$comment['comment'].'</div>'?>
-
-      <?php endforeach;?>
-
-   </div>
-      <div class="form-group">
-        <?= Html::submitButton('Додати коментар', ['class' => 'btn btn-primary']) ?>
+      <?php foreach ($showcomments as $comment): ?>
+      <?= '<div class="comment-wrapper">' ?>
+      <?= '<div class="comment-author">' . $comment['date'] . '</div>' ?>
+      <?= '<div class="comment-author">Автор :' . $comment['author_name'] . '</div>' ?>
+      <?= '<div class="comment-text">' . $comment['comment'] . '</div>' ?>
       </div>
+      <?php endforeach; ?>
 
-    <?php ActiveForm::end(); ?>
+  <?php $form = ActiveForm::begin(); ?>
+  <?= $form->field($model, 'author_name')->label('Автор') ?>
+  <?= $form->field($model, 'comment')->textarea(['rows' => 6])->label('Коментар') ?>
+  <?= $form->field($model, 'news_id')->hiddenInput(['value' => $shownews['id']])->label(false) ?>
+    <div class="form-group">
+      <?= Html::submitButton('Додати коментар', ['class' => 'btn btn-primary']) ?>
+    </div>
 
-
+  <?php ActiveForm::end(); ?>
 
 
 </div>
 
-  </div>
+</div>
 </div>
 
 <footer class="footer">
-  <div class="container">
-    <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+    <div class="container">
+        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
 
-    <p class="pull-right"><?= Yii::powered() ?></p>
-  </div>
+        <p class="pull-right"><?= Yii::powered() ?></p>
+    </div>
 </footer>
 
 <?php $this->endBody() ?>
@@ -108,7 +99,5 @@ use yii\widgets\ActiveForm;
 </html>
 <?php $this->endPage() ?>
 
-
-
-<?php $this->registerCssFile('web/css/basic.css');?>
+<?php $this->registerCssFile('@web/css/basic.css'); ?>
 

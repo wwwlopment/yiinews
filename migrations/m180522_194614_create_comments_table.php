@@ -3,16 +3,16 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `news_comments`.
+ * Handles the creation of table `comments`.
  */
-class m180522_194614_create_news_comments_table extends Migration
+class m180522_194614_create_comments_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('news_comments', [
+        $this->createTable('comments', [
             'id' => $this->primaryKey(),
             'news_id' => $this->integer(),
             'comment' => $this->string(),
@@ -28,6 +28,6 @@ class m180522_194614_create_news_comments_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('news_comments');
+        $this->dropTable('comments');
     }
 }

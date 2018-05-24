@@ -3,11 +3,11 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\NewsComments;
+use app\models\Comments;
 /**
  * NewsCommentsSearch represents the model behind the search form of `app\models\NewsComments`.
  */
-class NewsCommentsSearch extends NewsComments
+class CommentsSearch extends Comments
 {
   /**
    * {@inheritdoc}
@@ -36,7 +36,7 @@ class NewsCommentsSearch extends NewsComments
    */
   public function search($params)
   {
-    $query = NewsComments::find();
+    $query = Comments::find();
     // add conditions that should always apply here
     $dataProvider = new ActiveDataProvider([
       'query' => $query,

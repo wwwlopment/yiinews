@@ -1,15 +1,15 @@
 <?php
 namespace app\modules\controllers;
 use Yii;
-use app\models\NewsComments;
-use app\models\NewsCommentsSearch;
+use app\models\Comments;
+use app\models\CommentsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 /**
  * NewsCommentsController implements the CRUD actions for NewsComments model.
  */
-class NewsCommentsController extends Controller
+class CommentsController extends Controller
 {
   /**
    * {@inheritdoc}
@@ -31,7 +31,7 @@ class NewsCommentsController extends Controller
    */
   public function actionIndex()
   {
-    $searchModel = new NewsCommentsSearch();
+    $searchModel = new CommentsSearch();
     $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
     return $this->render('index', [
       'searchModel' => $searchModel,
@@ -57,7 +57,7 @@ class NewsCommentsController extends Controller
    */
   public function actionCreate()
   {
-    $model = new NewsComments();
+    $model = new Comments();
     if ($model->load(Yii::$app->request->post()) && $model->save()) {
       return $this->redirect(['view', 'id' => $model->id]);
     }
@@ -103,7 +103,7 @@ class NewsCommentsController extends Controller
    */
   protected function findModel($id)
   {
-    if (($model = NewsComments::findOne($id)) !== null) {
+    if (($model = Comments::findOne($id)) !== null) {
       return $model;
     }
     throw new NotFoundHttpException('The requested page does not exist.');

@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\NewsComments */
+/* @var $model app\models\Comments */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'News Comments', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Comments', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="news-comments-view">
+<div class="comments-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

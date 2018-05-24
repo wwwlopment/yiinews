@@ -9,6 +9,7 @@ $config = [
     'bootstrap' => ['log'],
     'language' => 'uk',
     'layout' => 'main',
+    'name' => 'Сайт новин',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',

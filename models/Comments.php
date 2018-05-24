@@ -10,14 +10,14 @@ use Yii;
  * @property string $date
  * @property string $author_name
  */
-class NewsComments extends \yii\db\ActiveRecord
+class Comments extends \yii\db\ActiveRecord
 {
   /**
    * {@inheritdoc}
    */
   public static function tableName()
   {
-    return 'news_comments';
+    return 'comments';
   }
   /**
    * {@inheritdoc}
@@ -27,7 +27,8 @@ class NewsComments extends \yii\db\ActiveRecord
     return [
       [['news_id'], 'integer'],
       [['date'], 'safe'],
-      [['comment', 'author_name'], 'string', 'max' => 255],
+      [['comment', 'author_name'], 'string', 'max' => 255,],
+      [['comment', 'author_name'], 'required'],
     ];
   }
   /**

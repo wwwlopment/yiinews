@@ -1,5 +1,6 @@
 <?php
 /* @var $this \yii\web\View */
+
 /* @var $content string */
 
 use app\widgets\Alert;
@@ -7,6 +8,7 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
+
 //use app\assets\AppAsset;
 
 //AppAsset::register($this);
@@ -38,9 +40,9 @@ use yii\widgets\Breadcrumbs;
   echo Nav::widget([
     'options' => ['class' => 'navbar-nav navbar-right'],
     'items' => [
-      ['label' => 'Home', 'url' => ['/']],
-      ['label' => 'News', 'url' => ['/newsmodule/news/index']],
-      ['label' => 'Comments', 'url' => ['/newsmodule/newscomments/index']],
+      ['label' => 'На головну', 'url' => ['/']],
+      ['label' => 'Адміністрування новин', 'url' => ['/newsmodule/news/index']],
+      ['label' => 'Адміністрування коментарів', 'url' => ['/newsmodule/comments/index']],
     ],
   ]);
   NavBar::end();
@@ -59,7 +61,7 @@ use yii\widgets\Breadcrumbs;
       foreach ($news as $item) {
         echo '<div class="item-contain">';
         echo '<h2>' . $item->title . '</h2>';
-        echo '<div class="item-image">' .Html::img('/web/uploads/'.$item->picture). '</div>';
+        echo '<div class="item-image">' . Html::img('/web/uploads/' . $item->picture) . '</div>';
         echo '<div class="item-teaser">' . $item->teaser . '</div>';
         echo Html::a('Читати...', ['show', 'id' => $item->id], ['class' => 'btn btn-primary']);
         echo '</div> </br>';
@@ -83,5 +85,5 @@ use yii\widgets\Breadcrumbs;
 
 
 
-<?php $this->registerCssFile('web/css/basic.css');?>
+<?php $this->registerCssFile('web/css/basic.css'); ?>
 

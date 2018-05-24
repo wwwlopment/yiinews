@@ -4,10 +4,10 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\NewsCommentsSearch */
+/* @var $searchModel app\models\CommentsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'News Comments';
+$this->title = 'Comments';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="news-comments-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create News Comments', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Comments', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
