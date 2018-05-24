@@ -33,7 +33,8 @@ class News extends \yii\db\ActiveRecord
             [['title', 'content'], 'required'],
             [['date'], 'date', 'format' => 'php:Y-m-d'],
             [['date'], 'default', 'value' => date('Y-m-d')],
-            [['title', 'picture', 'teaser', 'content'], 'string', 'max' => 255],
+            [['title', 'picture', 'teaser'], 'string', 'max' => 255],
+            [['content'], 'string'],
         ];
     }
 

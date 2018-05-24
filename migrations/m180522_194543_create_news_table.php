@@ -17,7 +17,7 @@ class m180522_194543_create_news_table extends Migration
             'title' => $this->string(),
             'picture' => $this->string(),
             'teaser' => $this->string(),
-            'content' => $this->string(),
+            'content' => $this->text(),
             'date' => $this->date(),
         ]);
 
