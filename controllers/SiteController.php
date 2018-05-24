@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\News;
+use yii\data\Pagination;
 
 class SiteController extends Controller
 {
@@ -71,6 +72,29 @@ class SiteController extends Controller
 
     return $this->render('basic', compact('news'));
   }
+
+  public function actionNews()
+  {
+    $this->view->title = 'Всі новини';
+    $news = News::find();
+    $countQuery = clone $news;
+
+    // paginations - 10 items per page
+    $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 10]);
+
+    $pages->pageSizeParam = false;
+
+    $models = $news->offset($pages->offset)
+      ->limit($pages->limit)
+      ->all();
+
+    return $this->render('basic', [
+      'models' => $models,
+      'pages' => $pages,
+    ]);
+
+  }
+
 
 
   /**

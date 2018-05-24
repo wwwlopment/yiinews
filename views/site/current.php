@@ -41,6 +41,7 @@ use yii\widgets\ActiveForm;
     'options' => ['class' => 'navbar-nav navbar-right'],
     'items' => [
       ['label' => 'На головну', 'url' => ['/']],
+      ['label' => 'Всі новини', 'url' => ['/site/news']],
       ['label' => 'Адміністрування новин', 'url' => ['/newsmodule/news/index']],
       ['label' => 'Адміністрування коментарів', 'url' => ['/newsmodule/comments/index']],
     ],
@@ -86,13 +87,6 @@ use yii\widgets\ActiveForm;
 </div>
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
 
 <?php $this->endBody() ?>
 </body>

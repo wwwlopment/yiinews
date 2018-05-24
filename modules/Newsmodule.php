@@ -10,7 +10,7 @@ class newsmodule extends \yii\base\Module
     /**
      * {@inheritdoc}
      */
-    public $layout = '/news';
+    public $layout = '/main';
 
     public $controllerNamespace = 'app\modules\controllers';
 

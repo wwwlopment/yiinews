@@ -8,6 +8,7 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
+use yii\widgets\LinkPager;
 
 //use app\assets\AppAsset;
 
@@ -41,6 +42,7 @@ use yii\widgets\Breadcrumbs;
     'options' => ['class' => 'navbar-nav navbar-right'],
     'items' => [
       ['label' => 'На головну', 'url' => ['/']],
+      ['label' => 'Всі новини', 'url' => ['/site/news']],
       ['label' => 'Адміністрування новин', 'url' => ['/newsmodule/news/index']],
       ['label' => 'Адміністрування коментарів', 'url' => ['/newsmodule/comments/index']],
     ],
@@ -55,28 +57,40 @@ use yii\widgets\Breadcrumbs;
       <?= Alert::widget() ?>
 
 
-        <h1>Останні 5 новин</h1>
-
       <?php
-      foreach ($news as $item) {
-        echo '<div class="item-contain">';
-        echo '<h2>' . $item->title . '</h2>';
-        echo '<div class="item-image">' . Html::img('/web/uploads/' . $item->picture) . '</div>';
-        echo '<div class="item-teaser">' . $item->teaser . '</div>';
-        echo Html::a('Читати...', ['show', 'id' => $item->id], ['class' => 'btn btn-primary']);
-        echo '</div> </br>';
+      if (isset ($news)) {
+        echo '<h1>Останні 5 новин :</h1>';
+        foreach ($news as $item) {
+          echo '<div class="item-contain">';
+          echo '<h2>' . $item->title . '</h2>';
+          echo '<div class="item-image">' . Html::img('/web/uploads/' . $item->picture) . '</div>';
+          echo '<div class="item-teaser">' . $item->teaser . '</div>';
+          echo Html::a('Читати...', ['show', 'id' => $item->id], ['class' => 'btn btn-primary']);
+          echo '</div> </br>';
+        }
       }
       ?>
     </div>
 </div>
+<?php
+if (isset ($models)) {
+  echo '<h1>Всі новини :</h1>';
+  foreach ($models as $model) {
+    echo '<div class="item-contain">';
+    echo '<h2>' . $model->title . '</h2>';
+    echo '<div class="item-image">' . Html::img('/web/uploads/' . $model->picture) . '</div>';
+    echo '<div class="item-teaser">' . $model->teaser . '</div>';
+    echo Html::a('Читати...', ['show', 'id' => $model->id], ['class' => 'btn btn-primary']);
+    echo '</div> </br>';
+  }
+}
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
+if (isset ($pages)) {
+  echo LinkPager::widget([
+    'pagination' => $pages,
+  ]);
+}
+?>
 
 <?php $this->endBody() ?>
 </body>
@@ -85,5 +99,5 @@ use yii\widgets\Breadcrumbs;
 
 
 
-<?php $this->registerCssFile('web/css/basic.css'); ?>
+<?php $this->registerCssFile('@web/css/basic.css'); ?>
 
